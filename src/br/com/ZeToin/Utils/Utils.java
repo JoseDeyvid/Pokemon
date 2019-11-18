@@ -1,4 +1,6 @@
 package br.com.ZeToin.Utils;
+import java.util.ArrayList;
+
 import br.com.ZeToin.main.Ginasio;
 import br.com.ZeToin.main.Jogador;
 import br.com.ZeToin.main.Pokemon;
@@ -43,6 +45,15 @@ public class Utils {
 		opcao--;
 		return sistema.todosJogadores.get(opcao);
 		
+	}
+	
+	public static void listarGinasiosDoJogador(Jogador jogador) {
+		String nomeGinasios = "";
+		int i = 0;
+		for (i = 0; i< jogador.getGinasios().size(); i++) {
+			nomeGinasios += (i+1) + " - " + jogador.getGinasios().get(i).getNome() + "\n";
+		}
+		View.exibirMensagem("Ginásios", nomeGinasios);
 	}
 // ---------------- Listagem ---------------------------
 	
