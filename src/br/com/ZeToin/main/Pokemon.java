@@ -2,7 +2,7 @@ package br.com.ZeToin.main;
 
 import br.com.ZeToin.Utils.View;
 
-public class Pokemon extends Personagem implements PodeSerCapturado{
+public class Pokemon extends Personagem implements Capturavel{
 
 	private String tipo = "";
 	private int nivel = 0;
