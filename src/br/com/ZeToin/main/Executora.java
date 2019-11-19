@@ -58,7 +58,7 @@ public class Executora {
 				Utils.criarJogador(sistema);
 				break;
 			case 2:
-				menuJogador(Utils.selecionarJogador(sistema), sistema.todosPokemons);
+				menuJogador(Utils.selecionarJogador(sistema), sistema.todosPokemons, sistema.todosGinasios);
 				break;
 			case 0:
 				return;
@@ -66,7 +66,7 @@ public class Executora {
 		} while (opcao != 0);
 	}
 	
-	public static void menuJogador (Jogador jogador, ArrayList<Pokemon> pokemonsSistema) {
+	public static void menuJogador (Jogador jogador, ArrayList<Pokemon> pokemonsSistema, ArrayList<Ginasio>  ginasios) {
 		int opcao = 0;
 		do {
 			try {
@@ -91,6 +91,7 @@ public class Executora {
 				break;
 			//Duelar
 			case 3:
+				jogador.duelar(ginasios);
 				break;
 			//Capturar Pokemon
 			case 4:
@@ -98,6 +99,7 @@ public class Executora {
 				break;
 			//Remover Pokemon
 			case 5:
+				jogador.removerPokemon();
 				break;
 			case 0:
 				return;

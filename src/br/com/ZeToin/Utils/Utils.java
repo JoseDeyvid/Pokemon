@@ -1,6 +1,7 @@
 package br.com.ZeToin.Utils;
 import java.util.ArrayList;
 
+import br.com.ZeToin.main.Capturavel;
 import br.com.ZeToin.main.Ginasio;
 import br.com.ZeToin.main.Jogador;
 import br.com.ZeToin.main.Pokemon;
@@ -18,9 +19,6 @@ public class Utils {
 	 */
 	public static void criarJogador(SistemaPokemon sistema) {
 		Jogador jogador = new Jogador(View.exibirInput("Jogador", "Digite o nome do novo jogador: "));
-		// ----- TESTE -----
-		jogador.setGinasios(sistema.todosGinasios);
-		// ----- TESTE -----
 		sistema.todosJogadores.add(jogador);
 	}
 	/**
@@ -75,6 +73,10 @@ public class Utils {
 			nomeJogadores += (i+1) + " - " + sistema.todosJogadores.get(i).getNome() + "\n";
 		}
 		return nomeJogadores;
+	}
+	
+	public static void capturar(Capturavel c, Jogador jogador) {
+		c.capturar(jogador);
 	}
 	
 	
