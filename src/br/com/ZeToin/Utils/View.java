@@ -39,7 +39,7 @@ public class View {
 		JScrollPane scrollPane = new JScrollPane(textArea);  
 		textArea.setLineWrap(true);  
 		textArea.setWrapStyleWord(true); 
-		scrollPane.setPreferredSize( new Dimension( 200, 200 ) );
+		scrollPane.setPreferredSize( new Dimension( 250, 250 ) );
 		JOptionPane.showMessageDialog(null, scrollPane, title,  
 		                                       JOptionPane.DEFAULT_OPTION);
 	}
@@ -73,6 +73,15 @@ public class View {
 	public static Double exibirInput(String title, String msg, Double valor) {
 		valor = Double.parseDouble(JOptionPane.showInputDialog(null, msg, title, JOptionPane.DEFAULT_OPTION));
 		return valor;
+	}
+	
+	public static Integer exibirInputScrolavel(String title, String msg) {
+		JTextArea textArea = new JTextArea(msg);
+		JScrollPane scrollPane = new JScrollPane(textArea);  
+		textArea.setLineWrap(true);  
+		textArea.setWrapStyleWord(true); 
+		scrollPane.setPreferredSize( new Dimension( 250, 250 ) );
+		return Integer.parseInt(JOptionPane.showInputDialog(null, scrollPane, title, JOptionPane.DEFAULT_OPTION));
 	}
 	
 }

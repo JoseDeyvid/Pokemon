@@ -20,6 +20,7 @@ public class Jogador extends Personagem{
 	public void capturarPokemon(ArrayList<Pokemon> pokemons) {
 		if(this.pokemons.size() == 3) {
 			View.exibirMensagemErro("Capturar Pokémon", "Limite de pokemons atingido!! \nVocê deve remover um pokémon primeiro para capturar outro!");
+			return;
 		}
 		Random r = new Random();
 		int qtdPokemons = pokemons.size();
@@ -35,6 +36,23 @@ public class Jogador extends Personagem{
 		} else {
 			View.exibirMensagemErro("Capturar Pokémon", "O Pokémon " + randomPokemon.getNome() + " fugiu e não foi capturado!!");
 		}
+	}
+	
+	public void removerPokemon() {
+		String textoPokemons = "";
+		for (Pokemon p: pokemons) {
+			textoPokemons += "--- Pokémon " + (pokemons.indexOf(p)+1) + " ---\n" + p.toString() + "\n";
+		}
+		
+		int index = View.exibirInputScrolavel("Remover pokemon", textoPokemons + "\n Digite o número do pokemon que deseja remover: ");
+		
+		if(index+1 >= pokemons.size()) {
+			View.exibirMensagemErro("ERRO", "Pokémon inexistente!");
+		} else {
+			Pokemon pokemonARemover = pokemons.get(index);
+			pokemons.remove(pokemonARemover);
+		}
+		
 	}
 	
 	//Getters e Setters
