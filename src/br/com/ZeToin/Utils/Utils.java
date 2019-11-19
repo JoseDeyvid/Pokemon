@@ -1,6 +1,7 @@
 package br.com.ZeToin.Utils;
 import java.util.ArrayList;
 
+
 import br.com.ZeToin.main.Ginasio;
 import br.com.ZeToin.main.Jogador;
 import br.com.ZeToin.main.Pokemon;
@@ -44,10 +45,34 @@ public class Utils {
 // ---------------- Listagem ---------------------------
 	public static Jogador selecionarJogador (SistemaPokemon sistema) {
 		int opcao = 0;
-		opcao = View.exibirInput("Jogadores", armazenarNomeJogadores(sistema), opcao);
+		boolean deuBom = false;
+		do {
+			try {
+				opcao = View.exibirInput("Jogadores", armazenarNomeJogadores(sistema), opcao);
+				deuBom = true;
+				if ((opcao - 1) >= sistema.todosJogadores.size() || (opcao - 1) < 0) {
+					throw new IndexOutOfBoundsException("Insira um número presente na lista!");
+				}
+			} catch (IndexOutOfBoundsException e) {
+				View.exibirMensagemErro("ERRO", e.getMessage());
+				deuBom = false;
+			} catch(NumberFormatException e) {
+				View.exibirMensagemErro("ERRO", "Apenas números são permitidos!");
+				deuBom = false;
+			}
+		}while(!deuBom);
 		opcao--;
 		return sistema.todosJogadores.get(opcao);
 		
+	}
+	
+	public static void listarTodosGinasios(SistemaPokemon sistema) {
+		String nomeGinasios = "";
+		int i = 0;
+		for (i = 0; i< sistema.todosGinasios.size(); i++) {
+			nomeGinasios += (i+1) + " - " + sistema.todosGinasios.get(i).getNome() + ", Dono: " + sistema.todosGinasios.get(i).getDono() + "\n";
+		}
+		View.exibirMensagemScrolavel("Ginásios", nomeGinasios);
 	}
 	
 	public static void listarGinasiosDoJogador(Jogador jogador) {
@@ -57,6 +82,15 @@ public class Utils {
 			nomeGinasios += (i+1) + " - " + jogador.getGinasios().get(i).getNome() + "\n";
 		}
 		View.exibirMensagemScrolavel("Ginásios", nomeGinasios);
+	}
+	
+	public static void listarPokemonsQueExistem(SistemaPokemon sistema) {
+		String nomePokemons = "";
+		int i = 0;
+		for (i = 0; i< sistema.todosPokemons.size(); i++) {
+			nomePokemons += (i+1) + " - " + sistema.todosPokemons.get(i).getNome() + ", Tipo: " + sistema.todosPokemons.get(i).getTipo() + "\n";
+		}
+		View.exibirMensagemScrolavel("Pokémons", nomePokemons);
 	}
 	
 	public static void listarPokemonsDoJogador(Jogador jogador) {

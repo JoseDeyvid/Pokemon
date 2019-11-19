@@ -68,6 +68,13 @@ public class Jogador extends Personagem{
 	public void setPokemons(ArrayList<Pokemon> pokemons) {
 		this.pokemons = pokemons;
 	}
+
+	@Override
+	public String toString() {
+		return "" + nome;
+	}
+	
+	
 	
 	
 }
