@@ -1,7 +1,7 @@
 package br.com.ZeToin.main;
 
 public abstract class Personagem {
-	private String nome;
+	protected String nome;
 
 	public Personagem(String nome) {
 		super();

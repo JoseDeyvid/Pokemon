@@ -1,6 +1,10 @@
 package br.com.ZeToin.Utils;
 
+import java.awt.Dimension;
+
 import javax.swing.JOptionPane;
+import javax.swing.JScrollPane;
+import javax.swing.JTextArea;
 /**
  * 
  * @author deyvid
@@ -15,6 +19,31 @@ public class View {
 	public static void exibirMensagem(String title, String msg) {
 		JOptionPane.showMessageDialog(null, msg, title, JOptionPane.DEFAULT_OPTION);
 	}
+	
+	/**
+	 * Exibe uma mensagem de erro para o usuário
+	 * @param title Título da mensagem
+	 * @param msg Mensagem de erro para o usuário
+	 */
+	public static void exibirMensagemErro(String title, String msg) {
+		JOptionPane.showMessageDialog(null, msg, title, JOptionPane.ERROR_MESSAGE);
+	}
+	
+	/**
+	 * Exibe uma mensagem scrolável para o usuário
+	 * @param title Titulo da mensagem
+	 * @param msg Mensagem para o usuário
+	 */
+	public static void exibirMensagemScrolavel(String title, String msg) {
+		JTextArea textArea = new JTextArea(msg);
+		JScrollPane scrollPane = new JScrollPane(textArea);  
+		textArea.setLineWrap(true);  
+		textArea.setWrapStyleWord(true); 
+		scrollPane.setPreferredSize( new Dimension( 200, 200 ) );
+		JOptionPane.showMessageDialog(null, scrollPane, title,  
+		                                       JOptionPane.DEFAULT_OPTION);
+	}
+	
 	/**
 	 * Vai armazenar a entrada de dados que deverá ser uma cadeia de caracteres inserida pelo usuário
 	 * @param title	Título da mensagem

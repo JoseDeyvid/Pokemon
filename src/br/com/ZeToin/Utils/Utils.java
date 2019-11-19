@@ -18,6 +18,9 @@ public class Utils {
 	 */
 	public static void criarJogador(SistemaPokemon sistema) {
 		Jogador jogador = new Jogador(View.exibirInput("Jogador", "Digite o nome do novo jogador: "));
+		// ----- TESTE -----
+		jogador.setGinasios(sistema.todosGinasios);
+		// ----- TESTE -----
 		sistema.todosJogadores.add(jogador);
 	}
 	/**
@@ -53,7 +56,15 @@ public class Utils {
 		for (i = 0; i< jogador.getGinasios().size(); i++) {
 			nomeGinasios += (i+1) + " - " + jogador.getGinasios().get(i).getNome() + "\n";
 		}
-		View.exibirMensagem("Ginásios", nomeGinasios);
+		View.exibirMensagemScrolavel("Ginásios", nomeGinasios);
+	}
+	
+	public static void listarPokemonsDoJogador(Jogador jogador) {
+		String pokemons = "";
+		for (Pokemon p : jogador.getPokemons()) {
+			pokemons += "--- Pokémon " + (jogador.getPokemons().indexOf(p)+1) + " ---\n" + p.toString() + "\n";
+		}
+		View.exibirMensagemScrolavel("Pokémons", pokemons);
 	}
 // ---------------- Listagem ---------------------------
 	

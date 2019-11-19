@@ -1,5 +1,7 @@
 package br.com.ZeToin.main;
 
+import java.util.ArrayList;
+
 import br.com.ZeToin.Utils.Utils;
 import br.com.ZeToin.Utils.View;
 public class Executora {
@@ -9,15 +11,17 @@ public class Executora {
 		SistemaPokemon sistemaPokemon = new SistemaPokemon();
 		int i = 0;
 		View.exibirMensagem("Iniciando", "É necessário, no mínimo: 2 jogadores, 1 ginásio e 3 pokémons.");
-//		Utils.criarGinasio(sistemaPokemon);
+		Utils.criarGinasio(sistemaPokemon);
+		
+		for (i = 1; i<= 3; i++) {
+			Utils.criarPokemon(sistemaPokemon);
+		}
 		
 		for (i = 1; i<= 2; i++) {
 			Utils.criarJogador(sistemaPokemon);
 		}
 		
-//		for (i = 1; i<= 3; i++) {
-//			Utils.criarPokemon(sistemaPokemon);
-//		}
+		
 		menuInicial(sistemaPokemon);
 	}
 	
@@ -54,7 +58,7 @@ public class Executora {
 				Utils.criarJogador(sistema);
 				break;
 			case 2:
-				menuJogador(Utils.selecionarJogador(sistema));
+				menuJogador(Utils.selecionarJogador(sistema), sistema.todosPokemons);
 				break;
 			case 0:
 				return;
@@ -62,30 +66,45 @@ public class Executora {
 		} while (opcao != 0);
 	}
 	
-	public static void menuJogador (Jogador jogador) {
+	public static void menuJogador (Jogador jogador, ArrayList<Pokemon> pokemonsSistema) {
 		int opcao = 0;
 		do {
-			opcao = View.exibirInput(jogador.getNome(),"1 - Listar Ginásios\n"
-					+ "2 - Listar Pokémons\n"
-					+ "3 - Duelar\n"
-					+ "4 - Capturar Pokémon\n"
-					+ "5 - Remover Pokémon\n"
-					+ "0 - Voltar.", opcao);
+			try {
+				opcao = View.exibirInput("Jogador " + jogador.getNome(),"1 - Listar Ginásios\n"
+						+ "2 - Listar Pokémons\n"
+						+ "3 - Duelar\n"
+						+ "4 - Capturar Pokémon\n"
+						+ "5 - Remover Pokémon\n"
+						+ "0 - Voltar.", opcao);
+			} catch(NumberFormatException e) {
+				View.exibirMensagemErro("ERRO", "Apenas números são permitidos!");
+				opcao = -1;
+			}
 			switch(opcao) {
+			//Listar Ginásios 
 			case 1:
-				
+				Utils.listarGinasiosDoJogador(jogador);
 				break;
+			//Listar Pokémons
 			case 2:
-				
+				Utils.listarPokemonsDoJogador(jogador);
 				break;
+			//Duelar
 			case 3:
 				break;
+			//Capturar Pokemon
 			case 4:
+				jogador.capturarPokemon(pokemonsSistema);
 				break;
+			//Remover Pokemon
 			case 5:
 				break;
 			case 0:
 				return;
+			case -1:
+				break;
+			default:
+				View.exibirMensagemErro("ERRO", "Opção inválida");
 			}
 		} while (opcao != 0);
 	}
