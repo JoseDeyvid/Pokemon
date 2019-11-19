@@ -1,3 +1,6 @@
+//Dupla: José Deyvid da Conceição Pacifico, UC18100729
+//		 Antônio Carlos Corrêa Neto Júnior, UC18100253
+
 package br.com.ZeToin.main;
 
 import java.util.ArrayList;
@@ -28,18 +31,24 @@ public class Executora {
 	public static void menuInicial(SistemaPokemon sistema) {
 		int opcao = 0;
 		do {
-			opcao = View.exibirInput("Menu Inicial","1 - Jogadores\n"
-					+ "2 - Ginásios\n"
-					+ "3 - Pokémons\n"
-					+ "0 - Sair.", opcao);
-			System.out.println(opcao);
+			try {
+				opcao = View.exibirInput("Menu Inicial","1 - Jogadores\n"
+						+ "2 - Ginásios\n"
+						+ "3 - Pokémons\n"
+						+ "0 - Sair.", opcao);
+			} catch(NumberFormatException e) {
+				View.exibirMensagemErro("ERRO", "Apenas números são permitidos!");
+				opcao = -1;
+			}
 			switch(opcao) {
 			case 1:
 				menuJogadores(sistema);
 				break;
 			case 2:
+				menuGinasios(sistema);
 				break;
 			case 3:
+				menuPokemons(sistema);
 				break;
 			case 0:
 				return;
@@ -47,12 +56,65 @@ public class Executora {
 		} while(opcao != 0);
 	}
 	
+	public static void menuGinasios(SistemaPokemon sistema) {
+		int opcao = 0;
+		do {
+			try {
+				opcao = View.exibirInput("Menu Ginásios","1 - Criar Ginásio\n"
+						+ "2 - Listar Ginásio\n"
+						+ "0 - Voltar.", opcao);
+			} catch(NumberFormatException e) {
+				View.exibirMensagemErro("ERRO", "Apenas números são permitidos!");
+				opcao = -1;
+			}
+			switch(opcao) {
+			case 1:
+				Utils.criarGinasio(sistema);
+				break;
+			case 2:
+				Utils.listarTodosGinasios(sistema);
+				break;
+			case 0:
+				return;
+			}
+		} while (opcao != 0);
+	}
+	
+	public static void menuPokemons(SistemaPokemon sistema) {
+		int opcao = 0;
+		do {
+			try {
+				opcao = View.exibirInput("Menu Pokémons","1 - Criar Pokémon\n"
+						+ "2 - Listar Pokémons\n"
+						+ "0 - Voltar.", opcao);
+			} catch(NumberFormatException e) {
+				View.exibirMensagemErro("ERRO", "Apenas números são permitidos!");
+				opcao = -1;
+			}
+			switch(opcao) {
+			case 1:
+				Utils.criarPokemon(sistema);
+				break;
+			case 2:
+				Utils.listarPokemonsQueExistem(sistema);
+				break;
+			case 0:
+				return;
+			}
+		} while (opcao != 0);
+	}
+	
 	public static void menuJogadores(SistemaPokemon sistema) {
 		int opcao = 0;
 		do {
-			opcao = View.exibirInput("Menu Jogadores","1 - Criar Jogador\n"
-					+ "2 - Selecionar Jogador\n"
-					+ "0 - Voltar.", opcao);
+			try {
+				opcao = View.exibirInput("Menu Jogadores","1 - Criar Jogador\n"
+						+ "2 - Selecionar Jogador\n"
+						+ "0 - Voltar.", opcao);
+			} catch(NumberFormatException e) {
+				View.exibirMensagemErro("ERRO", "Apenas números são permitidos!");
+				opcao = -1;
+			}
 			switch(opcao) {
 			case 1:
 				Utils.criarJogador(sistema);
