@@ -48,9 +48,15 @@ public class Pokemon extends Personagem implements Capturavel{
 	 */
 	private TipoPokemon selecionarTipo() {
 		int opcao = 0;
-		opcao = View.exibirInput("Selecione o tipo do pokemon: ", "1 - Água\n"
-				+ "2 - Fogo\n"
-				+ "3 - Vento\n", opcao);
+		do {
+			try {
+				opcao = View.exibirInput("Selecione o tipo do pokemon: ", "1 - Água\n"
+						+ "2 - Fogo\n"
+						+ "3 - Vento\n", opcao);
+			} catch (NumberFormatException e) {
+				View.exibirMensagemErro("ERRO", "Apenas números são permitidos!");
+			}
+		} while(opcao==0);
 		if (opcao == 1) {
 			return TipoPokemon.Agua;
 		} else if (opcao == 2) {
